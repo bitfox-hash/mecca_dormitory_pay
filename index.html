@@ -168,8 +168,8 @@
             <img class="d-block mx-auto mb-4" src="assets/brand/logo_new.png" alt="" width="72" height="57">
             <h2>메카테크놀러지 633동1004호</h2>
             <p class="lead">
-                이수형 부장님,
-                박연호 과장,
+                이수형 부장님<br>
+                박연호 과장<br>
                 이정후 사원
             </p>
         </div>
@@ -208,33 +208,62 @@
                     </li>
                 </ul>
 
-                <form class="card p-2">
-                    <div class="input-group">
-                        <input type="text" name="total" class="form-control" placeholder="총 관리비를 입력하세요.">
-                        <button type="submit" id="fm" class="btn btn-secondary">전송</button>
-                    </div>
-                </form>
+                <div class="input-group">
+                    <input type="text" name="totalPay" class="form-control" placeholder="총 관리비를 입력하세요.">
+                    <button type="button" onclick="doAction(); return false" id="fm" class="btn btn-secondary">전송</button>
+                </div>
             </div>
 
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">휘트니스 이용료</h4>
                 <form class="needs-validation" novalidate>
                     <div class="my-3">
+                        <h5 class="mb-3">이수형 부장님</h5>
                         <div class="form-check">
-                            <input id="credit" name="piti" type="radio" class="form-check-input" checked required>
-                            <label class="form-check-label" for="credit">헬스</label>
+                            <input id="pay01" name="piti01" type="radio" class="form-check-input">
+                            <label class="form-check-label" for="pay01">이용안함</label>
                         </div>
                         <div class="form-check">
-                            <input id="debit" name="piti" type="radio" class="form-check-input" required>
-                            <label class="form-check-label" for="credit">헬스</label>
+                            <input id="pay02" name="piti01" type="radio" class="form-check-input" checked>
+                            <label class="form-check-label" for="pay02">헬스(8000\)</label>
                         </div>
                         <div class="form-check">
-                            <input id="paypal" name="piti" type="radio" class="form-check-input" required>
-                            <label class="form-check-label" for="credit">헬스</label>
+                            <input id="pay03" name="piti01" type="radio" class="form-check-input">
+                            <label class="form-check-label" for="pay03">헬스+골프(23000\)</label>
                         </div>
                     </div>
-
                     <hr class="my-4">
+                    <div class="my-3">
+                        <h5 class="mb-3">박연호 과장</h5>
+                        <div class="form-check">
+                            <input id="pay11" name="piti02" type="radio" class="form-check-input">
+                            <label class="form-check-label" for="pay11">이용안함</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="pay12" name="piti02" type="radio" class="form-check-input">
+                            <label class="form-check-label" for="pay12">헬스(8000\)</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="pay13" name="piti02" type="radio" class="form-check-input" checked>
+                            <label class="form-check-label" for="pay13">헬스+골프(23000\)</label>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="my-3">
+                        <h5 class="mb-3">이정후 사원</h5>
+                        <div class="form-check">
+                            <input id="pay21" name="piti03" type="radio" class="form-check-input">
+                            <label class="form-check-label" for="pay21">이용안함</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="pay22" name="piti03" type="radio" class="form-check-input" checked>
+                            <label class="form-check-label" for="pay22">헬스(8000\)</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="pay32" name="piti03" type="radio" class="form-check-input">
+                            <label class="form-check-label" for="pay32">헬스+골프(23000\)</label>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -248,7 +277,14 @@
 <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="checkout.js"></script>
 <script>
-    document.getElementsByName('fm');
+
+    function doAction() {
+        let total = document.getElementsByName('totalPay');
+        console.log(total)
+        if (total == null || total == undefined || total == '') {
+            alert("Hello World");
+        }
+    }
 </script>
 </body>
 </html>
