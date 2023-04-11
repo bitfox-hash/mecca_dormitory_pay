@@ -203,8 +203,12 @@
                         <span class="text-body-secondary" id="mecca_03">0\</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
+                        <span>휘트니스 이용료</span>
+                        <strong id="totalPiti">0\</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
                         <span>Total</span>
-                        <strong>0\</strong>
+                        <strong id="totalPay">0\</strong>
                     </li>
                 </ul>
 
@@ -220,15 +224,15 @@
                     <div class="my-3">
                         <h5 class="mb-3">이수형 부장님</h5>
                         <div class="form-check">
-                            <input id="pay01" name="piti01" type="radio" class="form-check-input">
+                            <input id="pay01" name="piti01" type="radio" class="form-check-input" value="0">
                             <label class="form-check-label" for="pay01">이용안함</label>
                         </div>
                         <div class="form-check">
-                            <input id="pay02" name="piti01" type="radio" class="form-check-input" checked>
+                            <input id="pay02" name="piti01" type="radio" class="form-check-input" value="8000" checked>
                             <label class="form-check-label" for="pay02">헬스(8000\)</label>
                         </div>
                         <div class="form-check">
-                            <input id="pay03" name="piti01" type="radio" class="form-check-input">
+                            <input id="pay03" name="piti01" type="radio" class="form-check-input" value="23000">
                             <label class="form-check-label" for="pay03">헬스+골프(23000\)</label>
                         </div>
                     </div>
@@ -236,15 +240,15 @@
                     <div class="my-3">
                         <h5 class="mb-3">박연호 과장</h5>
                         <div class="form-check">
-                            <input id="pay11" name="piti02" type="radio" class="form-check-input">
+                            <input id="pay11" name="piti02" type="radio" class="form-check-input" value="0">
                             <label class="form-check-label" for="pay11">이용안함</label>
                         </div>
                         <div class="form-check">
-                            <input id="pay12" name="piti02" type="radio" class="form-check-input">
+                            <input id="pay12" name="piti02" type="radio" class="form-check-input" value="8000">
                             <label class="form-check-label" for="pay12">헬스(8000\)</label>
                         </div>
                         <div class="form-check">
-                            <input id="pay13" name="piti02" type="radio" class="form-check-input" checked>
+                            <input id="pay13" name="piti02" type="radio" class="form-check-input" value="23000" checked>
                             <label class="form-check-label" for="pay13">헬스+골프(23000\)</label>
                         </div>
                     </div>
@@ -252,15 +256,15 @@
                     <div class="my-3">
                         <h5 class="mb-3">이정후 사원</h5>
                         <div class="form-check">
-                            <input id="pay21" name="piti03" type="radio" class="form-check-input">
+                            <input id="pay21" name="piti03" type="radio" class="form-check-input" value="0">
                             <label class="form-check-label" for="pay21">이용안함</label>
                         </div>
                         <div class="form-check">
-                            <input id="pay22" name="piti03" type="radio" class="form-check-input" checked>
+                            <input id="pay22" name="piti03" type="radio" class="form-check-input" value="8000" checked>
                             <label class="form-check-label" for="pay22">헬스(8000\)</label>
                         </div>
                         <div class="form-check">
-                            <input id="pay32" name="piti03" type="radio" class="form-check-input">
+                            <input id="pay32" name="piti03" type="radio" class="form-check-input" value="23000">
                             <label class="form-check-label" for="pay32">헬스+골프(23000\)</label>
                         </div>
                     </div>
@@ -276,15 +280,33 @@
 
 <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="checkout.js"></script>
-<script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+<script>
     function doAction() {
-        let total = document.getElementsByName('totalPay');
-        console.log(total)
+        // let total = document.getElementsByName('totalPay').value;
+        let total = $('[name="totalPay"]').val();
+        let piti1 = $('[name="piti01"]:checked').val();
+        let piti2 = $('[name="piti02"]:checked').val();
+        let piti3 = $('[name="piti03"]:checked').val();
+
+        let pitiTotal = Number(piti1) + Number(piti2) + Number(piti3);
+        let temp = Number(total) - pitiTotal;
+        let result = Math.round(temp / 3)
+
         if (total == null || total == undefined || total == '') {
-            alert("Hello World");
+            alert("관리비를 입력하세요.");
+            return;
         }
+
+        $('#mecca_01').text(result + Number(piti1) + '\\');
+        $('#mecca_02').text(result + Number(piti2) + '\\');
+        $('#mecca_03').text(result + Number(piti3) + '\\');
+        $('#totalPay').text(Number(total) + '\\');
+        $('#totalPiti').text(Number(pitiTotal) + '\\');
     }
+
+
 </script>
 </body>
 </html>
