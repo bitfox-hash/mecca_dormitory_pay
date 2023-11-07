@@ -168,10 +168,11 @@
             <img class="d-block mx-auto mb-4" src="assets/brand/logo_new.png" alt="" width="72" height="57">
             <h2>메카테크놀러지 633동1004호</h2>
             <p class="lead">
-                이수형 부장님<br>
+                이수형 부장<br>
                 박연호 과장<br>
                 이정후 사원
             </p>
+            <p>출입(가요)시스템 300원씩 추가</p>
         </div>
 
         <div class="row g-5">
@@ -183,32 +184,32 @@
                 <ul class="list-group mb-3">
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
-                            <h6 class="my-0">이수형 부장님</h6>
+                            <h6 class="my-0">이수형 부장</h6>
                             <small class="text-body-secondary"></small>
                         </div>
-                        <span class="text-body-secondary" id="mecca_01">0\</span>
+                        <span class="text-body-secondary" id="mecca_01">0₩</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
                             <h6 class="my-0">박연호 과장</h6>
                             <small class="text-body-secondary"></small>
                         </div>
-                        <span class="text-body-secondary" id="mecca_02">0\</span>
+                        <span class="text-body-secondary" id="mecca_02">0₩</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
                             <h6 class="my-0">이정후 사원</h6>
                             <small class="text-body-secondary"></small>
                         </div>
-                        <span class="text-body-secondary" id="mecca_03">0\</span>
+                        <span class="text-body-secondary" id="mecca_03">0₩</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span>휘트니스 이용료</span>
-                        <strong id="totalPiti">0\</strong>
+                        <strong id="totalPiti">0₩</strong>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total</span>
-                        <strong id="totalPay">0\</strong>
+                        <strong id="totalPay">0₩</strong>
                     </li>
                 </ul>
 
@@ -222,18 +223,18 @@
                 <h4 class="mb-3">휘트니스 이용료</h4>
                 <form class="needs-validation" novalidate>
                     <div class="my-3">
-                        <h5 class="mb-3">이수형 부장님</h5>
+                        <h5 class="mb-3">이수형 부장</h5>
                         <div class="form-check">
-                            <input id="pay01" name="piti01" type="radio" class="form-check-input" value="0">
+                            <input id="pay01" name="piti01" type="radio" class="form-check-input" value="0" checked>
                             <label class="form-check-label" for="pay01">이용안함</label>
                         </div>
                         <div class="form-check">
                             <input id="pay02" name="piti01" type="radio" class="form-check-input" value="8000">
-                            <label class="form-check-label" for="pay02">헬스(8000\)</label>
+                            <label class="form-check-label" for="pay02">헬스(8000₩)</label>
                         </div>
                         <div class="form-check">
                             <input id="pay03" name="piti01" type="radio" class="form-check-input" value="23000">
-                            <label class="form-check-label" for="pay03">헬스+골프(23000\)</label>
+                            <label class="form-check-label" for="pay03">헬스+골프(23000₩)</label>
                         </div>
                     </div>
                     <hr class="my-4">
@@ -245,27 +246,27 @@
                         </div>
                         <div class="form-check">
                             <input id="pay12" name="piti02" type="radio" class="form-check-input" value="8000" checked>
-                            <label class="form-check-label" for="pay12">헬스(8000\)</label>
+                            <label class="form-check-label" for="pay12">헬스(8000₩)</label>
                         </div>
                         <div class="form-check">
                             <input id="pay13" name="piti02" type="radio" class="form-check-input" value="23000">
-                            <label class="form-check-label" for="pay13">헬스+골프(23000\)</label>
+                            <label class="form-check-label" for="pay13">헬스+골프(23000₩)</label>
                         </div>
                     </div>
                     <hr class="my-4">
                     <div class="my-3">
                         <h5 class="mb-3">이정후 사원</h5>
                         <div class="form-check">
-                            <input id="pay21" name="piti03" type="radio" class="form-check-input" value="0">
+                            <input id="pay21" name="piti03" type="radio" class="form-check-input" value="0" checked>
                             <label class="form-check-label" for="pay21">이용안함</label>
                         </div>
                         <div class="form-check">
-                            <input id="pay22" name="piti03" type="radio" class="form-check-input" value="8000" checked>
-                            <label class="form-check-label" for="pay22">헬스(8000\)</label>
+                            <input id="pay22" name="piti03" type="radio" class="form-check-input" value="8000">
+                            <label class="form-check-label" for="pay22">헬스(8000₩)</label>
                         </div>
                         <div class="form-check">
                             <input id="pay32" name="piti03" type="radio" class="form-check-input" value="23000">
-                            <label class="form-check-label" for="pay32">헬스+골프(23000\)</label>
+                            <label class="form-check-label" for="pay32">헬스+골프(23000₩)</label>
                         </div>
                     </div>
                 </form>
@@ -286,22 +287,26 @@
     function doAction() {
         // let total = document.getElementsByName('totalPay').value;
         let total = $('[name="totalPay"]').val();
-        let piti1 = $('[name="piti01"]:checked').val();
-        let piti2 = $('[name="piti02"]:checked').val();
-        let piti3 = $('[name="piti03"]:checked').val();
+        let piti1 = $('[name="piti01"]:checked').val(); //이수형
+        let piti2 = $('[name="piti02"]:checked').val(); //박연호
+        let piti3 = $('[name="piti03"]:checked').val(); //이정후
 
         let pitiTotal = Number(piti1) + Number(piti2) + Number(piti3);
         let temp = Number(total) - pitiTotal;
         let result = Math.round(temp / 3)
+
+        let gayo1 = 300;    //이수형
+        let gayo2 = 300;    //박연호
+        let gayo3 = 1000-(gayo1-gayo2);    //이정후
 
         if (total == null || total == undefined || total == '') {
             alert("관리비를 입력하세요.");
             return;
         }
 
-        $('#mecca_01').text(result + Number(piti1) + '\\');
-        $('#mecca_02').text(result + Number(piti2) + '\\');
-        $('#mecca_03').text(result + Number(piti3) + '\\');
+        $('#mecca_01').text(result + Number(piti1) + Number(gayo1) + '\\'); //이수형
+        $('#mecca_02').text(result + Number(piti2) + Number(gayo2) + '\\'); //박연호
+        $('#mecca_03').text(result + Number(piti3) + Number(gayo3) + '\\'); //이정후
         $('#totalPay').text(Number(total) + '\\');
         $('#totalPiti').text(Number(pitiTotal) + '\\');
     }
