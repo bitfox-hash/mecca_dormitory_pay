@@ -166,13 +166,11 @@
     <main>
         <div class="py-5 text-center">
             <img class="d-block mx-auto mb-4" src="assets/brand/logo_new.png" alt="" width="72" height="57">
-            <h2>메카테크놀러지 633동1004호</h2>
+            <h2>메카테크놀러지 634동1404호</h2>
             <p class="lead">
                 이수형 부장<br>
-                박연호 과장<br>
-                이정후 사원
+                박연호 과장
             </p>
-            <p>출입(가요)시스템 300원씩 추가</p>
         </div>
 
         <div class="row g-5">
@@ -196,6 +194,7 @@
                         </div>
                         <span class="text-body-secondary" id="mecca_02">0₩</span>
                     </li>
+                    <!--
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
                             <h6 class="my-0">이정후 사원</h6>
@@ -203,9 +202,14 @@
                         </div>
                         <span class="text-body-secondary" id="mecca_03">0₩</span>
                     </li>
+                    -->
                     <li class="list-group-item d-flex justify-content-between">
                         <span>휘트니스 이용료</span>
                         <strong id="totalPiti">0₩</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Gayo 출입시스템</span>
+                        <strong>1,000₩</strong>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total</span>
@@ -214,7 +218,9 @@
                 </ul>
 
                 <div class="input-group">
-                    <input type="text" name="totalPay" class="form-control" placeholder="총 관리비를 입력하세요.">
+                    <input type="text" name="totalPay" class="form-control" placeholder="총 관리비를 입력하세요."
+                           onkeyup="removeChar(event); inputNumberFormat(this);"
+                           onkeydown="inputNumberFormat(this);">
                     <button type="button" onclick="doAction(); return false" id="fm" class="btn btn-secondary">전송</button>
                 </div>
             </div>
@@ -254,6 +260,7 @@
                         </div>
                     </div>
                     <hr class="my-4">
+                    <!--
                     <div class="my-3">
                         <h5 class="mb-3">이정후 사원</h5>
                         <div class="form-check">
@@ -269,6 +276,7 @@
                             <label class="form-check-label" for="pay32">헬스+골프(23000₩)</label>
                         </div>
                     </div>
+                    -->
                 </form>
             </div>
         </div>
@@ -286,32 +294,77 @@
 <script>
     function doAction() {
         // let total = document.getElementsByName('totalPay').value;
-        let total = $('[name="totalPay"]').val();
+        let payInput = $('[name="totalPay"]').val();
         let piti1 = $('[name="piti01"]:checked').val(); //이수형
         let piti2 = $('[name="piti02"]:checked').val(); //박연호
-        let piti3 = $('[name="piti03"]:checked').val(); //이정후
+        // let piti3 = $('[name="piti03"]:checked').val(); //이정후
 
-        let pitiTotal = Number(piti1) + Number(piti2) + Number(piti3);
-        let temp = Number(total) - pitiTotal;
-        let result = Math.round(temp / 3)
-
-        let gayo1 = 300;    //이수형
-        let gayo2 = 300;    //박연호
-        let gayo3 = 1000-(gayo1-gayo2);    //이정후
-
-        if (total == null || total == undefined || total == '') {
+        if (payInput == null || payInput == undefined || payInput == '') {
             alert("관리비를 입력하세요.");
             return;
         }
 
-        $('#mecca_01').text(result + Number(piti1) + Number(gayo1) + '\\'); //이수형
-        $('#mecca_02').text(result + Number(piti2) + Number(gayo2) + '\\'); //박연호
-        $('#mecca_03').text(result + Number(piti3) + Number(gayo3) + '\\'); //이정후
+        // let pitiTotal = Number(piti1) + Number(piti2) + Number(piti3);
+        let pitiTotal = Number(piti1) + Number(piti2);
+        let temp = uncomma(payInput) - pitiTotal;
+        let result = Math.round(temp / 2)
+
+        let gayo1 = 500;    //이수형
+        let gayo2 = 500;    //박연호
+        // let gayo3 = 1000-(gayo1-gayo2);    //이정후
+
+        let result01 = result + Number(piti1) + Number(gayo1);
+        let result02 = result + Number(piti2) + Number(gayo2);
+        $('#mecca_01').text(result01.toLocaleString() + '\\'); //이수형
+        $('#mecca_02').text(result02.toLocaleString() + '\\'); //박연호
+        // $('#mecca_03').text(result + Number(piti3) + Number(gayo3) + '\\'); //이정후
         $('#totalPay').text(Number(total) + '\\');
         $('#totalPiti').text(Number(pitiTotal) + '\\');
     }
 
+    function priceToString(e) {
 
+    }
+
+    function comma(obj) {
+        var regx = new RegExp(/(-?\d+)(\d{3})/);
+        var bExists = obj.indexOf(".", 0);
+        var strArr = obj.split('.');
+
+        while (regx.test(strArr[0])) {
+            strArr[0] = strArr[0].replace(regx, "$1,$2");
+        }
+
+        if (bExists > -1) {
+            obj = strArr[0] + "." + strArr[1];
+        } else {
+            obj = strArr[0];
+        }
+        return obj;
+    }
+
+    function removeChar(event) {
+        event = event || window.event;
+        var keyID = (event.which) ? event.which : event.keyCode;
+
+        if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) {
+            return;
+        } else {
+            //숫자만 입력
+            event.target.value = event.target.value.replace(/[^0-9]/g, "");
+        }
+    }
+
+    function uncomma(str) {
+        str = "" + str.replace(/,/gi, '');
+        str = str.replace(/(^\s*)|(\s*$)/g, "");
+
+        return (new Number(str));//문자열을 숫자로 반환
+    }
+
+    function inputNumberFormat(obj) {
+        obj.value = comma(obj.value);
+    }
 </script>
 </body>
 </html>
