@@ -170,6 +170,7 @@
             <p class="lead">
                 이수형 부장<br>
                 박연호 과장
+                양회빈 사원
             </p>
         </div>
         <div class="row g-5">
@@ -193,23 +194,23 @@
                         </div>
                         <span class="text-body-secondary" id="mecca_02">0₩</span>
                     </li>
-                    <!--
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
-                            <h6 class="my-0">이정후 사원</h6>
+                            <h6 class="my-0">양회빈 사원</h6>
                             <small class="text-body-secondary"></small>
                         </div>
                         <span class="text-body-secondary" id="mecca_03">0₩</span>
                     </li>
-                    -->
                     <li class="list-group-item d-flex justify-content-between">
                         <span>휘트니스 이용료</span>
                         <strong id="totalPiti">0₩</strong>
                     </li>
+                    <!--
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Gayo 출입시스템</span>
                         <strong>1,000₩</strong>
                     </li>
+                    -->
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total</span>
                         <strong id="totalPay">0₩</strong>
@@ -259,11 +260,10 @@
                         </div>
                     </div>
                     <hr class="my-4">
-                    <!--
                     <div class="my-3">
                         <h5 class="mb-3">이정후 사원</h5>
                         <div class="form-check">
-                            <input id="pay21" name="piti03" type="radio" class="form-check-input" value="0" checked>
+                            <input id="pay21" name="piti03" type="radio" class="form-check-input" value="0">
                             <label class="form-check-label" for="pay21">이용안함</label>
                         </div>
                         <div class="form-check">
@@ -271,11 +271,10 @@
                             <label class="form-check-label" for="pay22">헬스(8000₩)</label>
                         </div>
                         <div class="form-check">
-                            <input id="pay32" name="piti03" type="radio" class="form-check-input" value="23000">
+                            <input id="pay32" name="piti03" type="radio" class="form-check-input" value="23000" checked>
                             <label class="form-check-label" for="pay32">헬스+골프(23000₩)</label>
                         </div>
                     </div>
-                    -->
                 </form>
             </div>
         </div>
@@ -296,7 +295,7 @@
         let payInput = $('[name="totalPay"]').val();
         let piti1 = $('[name="piti01"]:checked').val(); //이수형
         let piti2 = $('[name="piti02"]:checked').val(); //박연호
-        // let piti3 = $('[name="piti03"]:checked').val(); //이정후
+        let piti3 = $('[name="piti03"]:checked').val(); //양회빈
 
         if (payInput == null || payInput == undefined || payInput == '') {
             alert("관리비를 입력하세요.");
@@ -312,11 +311,11 @@
         let gayo2 = 500;    //박연호
         // let gayo3 = 1000-(gayo1-gayo2);    //이정후
 
-        let result01 = result + Number(piti1) + Number(gayo1);
-        let result02 = result + Number(piti2) + Number(gayo2);
+        let result01 = result + Number(piti1);
+        let result02 = result + Number(piti2);
         $('#mecca_01').text(result01.toLocaleString() + '\\'); //이수형
         $('#mecca_02').text(result02.toLocaleString() + '\\'); //박연호
-        // $('#mecca_03').text(result + Number(piti3) + Number(gayo3) + '\\'); //이정후
+        $('#mecca_03').text(result + Number(piti3) + '\\'); //양회빈
         $('#totalPay').text(Number(total) + '\\');
         $('#totalPiti').text(Number(pitiTotal) + '\\');
     }
